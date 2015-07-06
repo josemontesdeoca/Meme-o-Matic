@@ -1,4 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,4 +9,87 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".CreateMemeActivity">
 
+    <EditText
+        android:id="@+id/etTopText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:hint="@string/hint_top_text"/>
+
+    <EditText
+        android:id="@+id/etBottomText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/etTopText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/etTopText"
+        android:layout_below="@+id/etTopText"
+        android:hint="@string/hint_bottom_text"/>
+
+    <RelativeLayout
+        android:id="@+id/rlMeme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/etBottomText"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/ivMemeImage"
+            android:layout_width="320dp"
+            android:layout_height="320dp"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/template_advicedog" />
+
+        <TextView
+            android:id="@+id/tvTopText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/ivMemeImage"
+            android:layout_alignLeft="@+id/ivMemeImage"
+            android:layout_alignRight="@+id/ivMemeImage"
+            android:layout_alignStart="@+id/ivMemeImage"
+            android:layout_alignTop="@+id/ivMemeImage"
+            tools:text="@string/default_top_text"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:shadowColor="#000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvBottomText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/ivMemeImage"
+            android:layout_alignEnd="@+id/ivMemeImage"
+            android:layout_alignLeft="@+id/ivMemeImage"
+            android:layout_alignRight="@+id/ivMemeImage"
+            android:layout_alignStart="@+id/ivMemeImage"
+            tools:text="@string/default_bottom_text"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:shadowColor="#000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 </RelativeLayout>
