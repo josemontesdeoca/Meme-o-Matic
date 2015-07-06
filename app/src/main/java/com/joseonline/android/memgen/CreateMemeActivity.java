@@ -1,7 +1,12 @@
 package com.joseonline.android.memgen;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -9,6 +14,7 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class CreateMemeActivity extends ActionBarActivity {
@@ -81,10 +87,40 @@ public class CreateMemeActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_share) {
+            onShareMeme();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Save meme from the ViewGroup as an Image using Android's MediaStore Content Provider
+     *
+     * @return The url where the image has been stored
+     */
+    private String saveMeme() {
+        Bitmap memeBitmap = Bitmap.createBitmap(rlMeme.getWidth(), rlMeme.getHeight(),
+                Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(memeBitmap);
+        rlMeme.draw(c);
+        return MediaStore.Images.Media.insertImage(getContentResolver(), memeBitmap, "Meme", "Meme");
+    }
+
+    /**
+     * Share Meme via Android's ACTION_SEND implicit Intent
+     */
+    private void onShareMeme() {
+        String memeUrl = saveMeme();
+
+        if (memeUrl != null) {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("image/png");
+            shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(memeUrl));
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.share_tag)));
+        } else {
+            Toast.makeText(this, "Oops! an error has occured while sharing your meme!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

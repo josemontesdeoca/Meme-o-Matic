@@ -1,11 +1,13 @@
 <resources>
     <string name="app_name">Meme-o-Matic</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_share">Share</string>
 
     <string name="hint_top_text">Enter top text</string>
     <string name="hint_bottom_text">Enter bottom text</string>
     <string name="default_top_text">Top Text</string>
     <string name="default_bottom_text">Bottom Text</string>
+
+    <string name="share_tag">Share Meme via</string>
 
 </resources>
