@@ -13,8 +13,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 
 public class CreateMemeActivity extends ActionBarActivity {
@@ -23,6 +26,7 @@ public class CreateMemeActivity extends ActionBarActivity {
     private TextView tvTopText;
     private TextView tvBottomText;
     private ViewGroup rlMeme;
+    private ImageView ivMemeImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,7 @@ public class CreateMemeActivity extends ActionBarActivity {
         tvTopText = (TextView) findViewById(R.id.tvTopText);
         tvBottomText = (TextView) findViewById(R.id.tvBottomText);
         rlMeme = (ViewGroup) findViewById(R.id.rlMeme);
+        ivMemeImage = (ImageView) findViewById(R.id.ivMemeImage);
 
         etTopText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -69,6 +74,13 @@ public class CreateMemeActivity extends ActionBarActivity {
                 tvBottomText.setText(editable.toString());
             }
         });
+
+        Intent intent = getIntent();
+
+        if (intent != null) {
+            String memeUrl = intent.getExtras().getString("memeUrl");
+            Picasso.with(this).load(memeUrl).into(ivMemeImage);
+        }
     }
 
 
