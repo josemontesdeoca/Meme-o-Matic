@@ -78,8 +78,15 @@ public class CreateMemeActivity extends ActionBarActivity {
         Intent intent = getIntent();
 
         if (intent != null) {
-            String memeUrl = intent.getExtras().getString("memeUrl");
-            Picasso.with(this).load(memeUrl).into(ivMemeImage);
+            Bundle extras = intent.getExtras();
+
+            if (extras != null) {
+                String memeUrl = extras.getString("memeUrl");
+
+                if (memeUrl != null) {
+                    Picasso.with(this).load(memeUrl).into(ivMemeImage);
+                }
+            }
         }
     }
 
